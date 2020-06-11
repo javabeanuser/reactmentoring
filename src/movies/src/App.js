@@ -1,18 +1,24 @@
 import React from 'react';
+// import {Router} from 'react-router';
 // import logo from './logo.svg';
 import './App.css';
-import ItemList from './component/item-list'
-import SearchBox from './component/search-box'
+import {ItemList} from './containers/itemList'
+import {SearchBox} from './components/searchBox'
+import {SearchButton} from  './components/searchButton'
+import {SearchResult} from  './containers/searchResults'
+import ErrorBoundary from './exception/ErrorBoundary'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-          <SearchBox/>
-          <ItemList/>
-      </header>
-    </div>
+export default () => {
+  return (    
+    <ErrorBoundary>
+      <SearchResult></SearchResult>
+      {/* <div className="App">
+        <header className="App-header">
+            <SearchBox/>
+            <ItemList/>
+        </header>
+      </div>   
+      <SearchButton/>      */}
+    </ErrorBoundary> 
   );
 }
-
-export default App;

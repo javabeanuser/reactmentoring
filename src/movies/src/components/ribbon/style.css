@@ -1,0 +1,6 @@
+#ribbon {
+    background-color:rgb(55, 55, 55);
+    height: 70px;
+    align-self: flex-end;
+    text-align: right;
+}
