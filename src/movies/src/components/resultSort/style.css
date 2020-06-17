@@ -13,10 +13,16 @@
 }
 
 #description {
-    color: black;
-    text-align: left;
+    color: black;  
 }
 
-#sortPanel {
-    height: 50%;    
+#sortPanel1 {
+    height: 50%;   
+    position: relative; 
+}
+
+#textSort {
+    position: absolute;
+    right: 20%;
+    top: 0px;
 }

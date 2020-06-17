@@ -3,8 +3,8 @@ import './style.css'
 
 export const ResultSort = (props) => {
     return (
-    <div id="sortPanel">
-        SORT BY
+    <div id="sortPanel1">
+        <div id="textSort"> SORT BY </div>
     </div>
     )
 }

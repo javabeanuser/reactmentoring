@@ -12,7 +12,8 @@
 
 }
 
-#description {
-    color: black;
+#infoDescription {
+    font-size: 12px;
+    color: grey;
     text-align: left;
 }

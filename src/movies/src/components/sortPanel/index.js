@@ -2,10 +2,10 @@ import React from 'react'
 import './style.css'
 import {ResultSort} from '../resultSort'
 
-export const Ribbon = (props) => {
+export const SortPanel = (props) => {
     return (
     <div id="ribbon"> 
-     <ResultSort/>
+            <ResultSort/>
     </div>
     )
 }

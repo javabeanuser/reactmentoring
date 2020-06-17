@@ -1,0 +1,53 @@
+#searchResult{
+    position: relative;
+}
+#searchButton{
+    position: absolute;
+    top: 1%;
+    right: 2%;
+}
+#searchImage{
+    position: absolute;
+    top: 20%;
+    left: 1%;
+}
+#searchFilmTitle{
+    color: ivory;
+    font-size: 30pt;
+    position: absolute;
+    top: 30%;
+    left: 16%;
+}
+#searchRaiting{
+    color: ivory;
+    font-size: 30pt;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+}
+#serachFilmDuration{
+    color: ivory;
+    font-size: 30pt;
+    position: absolute;
+    top: 80px;
+    left: 16%;
+}
+#serachFilmDescription{
+    height: 200px;
+    width: 50%;
+    color: ivory;
+    text-align: left;
+    font-size: 15pt;
+    position: absolute;
+    top: 130px;
+    left: 16%;
+}
+#sortPanel{
+    top: 300px;
+    position: relative;
+}
+#filterPanel{
+    top: 300px;
+    position: relative;
+}
+
