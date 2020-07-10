@@ -1,21 +1,18 @@
 import React from 'react';
-import {Image} from '../itemImage'
-import {ItemTitle} from '../itemTitle'
-import {ItemGenre} from '../itemGenre'
-import {ItemReleaseDate} from '../itemReleaseDate'
+
 import './style.css'
 
-export const Item = (props)  =>  {
+export const Item = ({el: {poster_path, tagline, title, genres, release_date}, onClick})  =>  {  
   return (
-    <div className="gallery" onClick={props.onClick}>    
-     <Image src={props.src} alt={props.alt} />        
+    <div className="gallery" onClick={onClick}>
+      <img src={poster_path} alt={tagline} ></img>         
      <div>
        <div>
-        <ItemTitle title={props.title} />
-        <ItemGenre gender={props.gender} />
+        <div>{title}</div>
+        <div>{genres}</div>
        </div>
-       <div>        
-        <ItemReleaseDate releaseDate={props.releaseDate} />
+       <div> 
+       <div><p align="right"><strong>{release_date}</strong></p></div>       
        </div>
      </div> 
   </div>
