@@ -1,23 +1,15 @@
 import React from 'react';
 import {InfoPanel} from '../../components/infoPanel'
 import {MoviePreview} from '../../components/moviePreview'
-import {
-    useSelector, 
-    useDispatch
-} from 'react-redux'
+import { connect} from 'react-redux'
 import {useEffect} from 'react'
 import {setInitMoviesListAction} from '../../actions/actions'
-
-import {
-	useHistory
-} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 
-export const MovieSuggestions = ({sortByRaiting, sortByReleaseDate, movie, isView}) => {
-
-    const {isActive, movies} = useSelector(state => state)
+const MovieSuggestions = ({sortByRaiting, sortByReleaseDate, movie, isView, isActive, movies, setInitMoviesListAction}) => {
+    
     const history = useHistory()
-    const dispatch = useDispatch() 
 
     useEffect (()=> {
         
@@ -25,7 +17,7 @@ export const MovieSuggestions = ({sortByRaiting, sortByReleaseDate, movie, isVie
             const movies = await fetch('https://reactjs-cdp.herokuapp.com/movies')
               .then(response => response.json())
               .then(data => data.data);  
-            dispatch(setInitMoviesListAction(movies))
+            setInitMoviesListAction(movies)
             
         }
 
@@ -33,7 +25,7 @@ export const MovieSuggestions = ({sortByRaiting, sortByReleaseDate, movie, isVie
             const movies = await fetch('https://reactjs-cdp.herokuapp.com/movies?filter='+ movie.genres.join(","))
               .then(response => response.json())
               .then(data => data.data);  
-            dispatch(setInitMoviesListAction(movies))            
+            setInitMoviesListAction(movies)           
         }
         
         if (isView) {
@@ -57,8 +49,8 @@ export const MovieSuggestions = ({sortByRaiting, sortByReleaseDate, movie, isVie
         {
            isView 
            ? <InfoPanel  infoTitle={movies.length+" movie found"}
-           onClickHandleroptionOne={() => {sortByRaiting(dispatch, movies)}} 
-           onClickHandleroptionTwo={() => {sortByReleaseDate(dispatch, movies)}}/>
+           onClickHandleroptionOne={() => {sortByRaiting(movies)}} 
+           onClickHandleroptionTwo={() => {sortByReleaseDate(movies)}}/>
            : <InfoPanel  infoTitle={"Movies by: " + movie.genres.join(" & ")}/>
         }            
             <div className="catalogView">
@@ -73,3 +65,21 @@ export const MovieSuggestions = ({sortByRaiting, sortByReleaseDate, movie, isVie
        </div>
    ) 
 }
+
+const mapStateToProps = state =>  {
+    console.log(state.isActive)
+    return  {
+        isActive: state.isActive, 
+        movies:  state.movies,
+        isTitle: state.isTitle,
+        isGengre: state.isGengre
+    } 
+}
+
+const  mapDispatchToProps = dispatch => {    
+    return{
+        setInitMoviesListAction: (movies) => dispatch(setInitMoviesListAction(movies))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(MovieSuggestions)

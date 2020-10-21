@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {MovieCatalog} from './containers/movieCatalog'
+import MovieCatalog from './containers/movieCatalog'
 import {SearchResults} from './components/searchResult'
 import {
 	BrowserRouter,

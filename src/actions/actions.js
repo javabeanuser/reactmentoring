@@ -1,12 +1,13 @@
-export const setEmptyMoviesListAction = {
+export const setEmptyMoviesListAction = ({
                 type: "INIT", 
                 payload: 
                     {
                         isActive: false, 
                         movies: []
                     }
-            };
-export const setInitMoviesListAction = movies => (        {
+            });
+            
+export const setInitMoviesListAction = (movies) => ({
         type: "INIT", 
         payload: 
             {
@@ -15,7 +16,7 @@ export const setInitMoviesListAction = movies => (        {
             }
         })
 
-export const applyFilterAction = movies => ({
+export const applyFilterAction = (movies) => ({
 
         type: "FILTER", 
         payload: 
@@ -26,7 +27,7 @@ export const applyFilterAction = movies => ({
         }
 )
 
-export const sortByRaitingAction = movies => ({
+export const sortByRaitingAction =(movies) => ({
         type: "SORTBYRAITING", 
         payload: 
             {
@@ -35,7 +36,7 @@ export const sortByRaitingAction = movies => ({
             }
         }
 )
-export const sortByReleaseDateAction = movies => ({
+export const sortByReleaseDateAction = (movies) => ({
         type: "SORTBYRELEASEDATE", 
         payload: 
             {
@@ -45,15 +46,15 @@ export const sortByReleaseDateAction = movies => ({
         }
 )
 
-export const setSortTypeAction = (type, value) => ({
-        type: "SETSORTYPE", 
-        payload: 
-            {
-                isTitle: true,
-                isGengre: false
-            }
-        }
-)
+// export const setSortTypeAction = (type, value) => ({
+//         type: "SETSORTYPE", 
+//         payload: 
+//             {
+//                 isTitle: true,
+//                 isGengre: false
+//             }
+//         }
+// )
 export const setSearchByAction = (isTitle, isGengre) => ({
         type: "PREVIEW", 
         payload: 

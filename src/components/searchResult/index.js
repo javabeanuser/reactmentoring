@@ -1,6 +1,6 @@
 import React from 'react';
 import {MovieDetails} from '../movieDetails'
-import {MovieSuggestions} from '../../containers/movieSuggestions'
+import MovieSuggestions from '../../containers/movieSuggestions'
 import {useSelector} from 'react-redux'
 import {useEffect, useState} from 'react'
 import {
@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 export const SearchResults = ({id}) => {
-   const {isActive, movies} = useSelector(state => state)
+
    const history = useHistory()
    
    const [content, setContent] = useState({

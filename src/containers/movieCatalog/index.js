@@ -1,11 +1,7 @@
 import React from 'react';
 import {SearchPanel} from '../../components/searchPanel'
-import {MovieSuggestions} from '../movieSuggestions'
-import {
-    useSelector, 
-    useDispatch
-} from 'react-redux'
-import {useEffect} from 'react'
+import MovieSuggestions from '../movieSuggestions'
+import {connect} from 'react-redux'
 import { 
     setEmptyMoviesListAction, 
     applyFilterAction, 
@@ -20,41 +16,40 @@ import {
 } from "react-router-dom";
 
 
-export const MovieCatalog = () => {
+const MovieCatalog = ({movies, isGengre, applyFilterAction,sortByReleaseDateAction,sortByRaitingAction,setSearchByAction,setEmptyMoviesListAction}) => {
 
-    const {isActive, movies, isTitle, isGengre} = useSelector(state => state)
-    const dispatch = useDispatch() 
 
-    async function search(searchText, searchBy, dispatch){   
+    async function search(searchText, searchBy){   
         const movies = await fetch('https://reactjs-cdp.herokuapp.com/movies?searchBy='+searchBy+'&search='+searchText)
           .then(response => response.json())
           .then(data => data.data);  
-        dispatch(applyFilterAction(movies))     
+        applyFilterAction(movies)   
     }  
 
     function onSearchHandler(){             
-        console.log(isTitle, isGengre, isActive)
+   
         const inputVal = document.getElementById('searchInputValue').value 
         if (inputVal==''){
             window.location.reload();
         }
-        
-        dispatch(setEmptyMoviesListAction)   
+    
+        console.log(isGengre)
+        setEmptyMoviesListAction()
         if (isGengre) {
-            search(inputVal,"genres",dispatch)             
+            search(inputVal,"genres")             
         } else {
-            search(inputVal,"title",dispatch) 
+            search(inputVal,"title") 
         }
        
               
     }  
     
     function sortByReleaseDate(){
-        dispatch(sortByReleaseDateAction(movies))
+        sortByReleaseDateAction(movies)
     }
 
     function sortByRaiting(){
-        dispatch(sortByRaitingAction(movies))                      
+        sortByRaitingAction(movies)                   
     } 
     
 
@@ -63,7 +58,7 @@ export const MovieCatalog = () => {
         const gengre = document.getElementById('gengreSearch')
         title.classList = ["choiceButtonClicked"]
         gengre.classList= ["choiceButton"]
-        dispatch(setSearchByAction(true,false)) 
+        setSearchByAction(true,false)
 
     }
     function onClickGengersSearchHandler(){   
@@ -71,7 +66,7 @@ export const MovieCatalog = () => {
         const gengre = document.getElementById('gengreSearch')
         title.classList = ["choiceButton"]
         gengre.classList= ["choiceButtonClicked"]
-        dispatch(setSearchByAction(false,true))  
+        setSearchByAction(false,true)
 
     }
 
@@ -85,3 +80,26 @@ export const MovieCatalog = () => {
        </div>
    ) 
 }
+
+const mapStateToProps = state =>  {
+    return  {
+        isActive: state.isActive, 
+        movies:  state.movies,
+        isTitle: state.isTitle,
+        isGengre: state.isGengre
+    } 
+}
+
+const  mapDispatchToProps = dispatch => {    
+    return{
+        setEmptyMoviesListAction: () => dispatch(setEmptyMoviesListAction),
+        applyFilterAction: (movies) => {dispatch(applyFilterAction(movies))},
+        sortByReleaseDateAction: (movies) => {dispatch(sortByReleaseDateAction(movies))},
+        sortByRaitingAction: (movies) => {dispatch(sortByRaitingAction(movies))},
+        setSearchByAction: (isTitle, isGenge) => {dispatch(setSearchByAction(isTitle, isGenge))},
+    }
+}
+
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(MovieCatalog)

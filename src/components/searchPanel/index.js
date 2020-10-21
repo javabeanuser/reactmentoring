@@ -1,14 +1,8 @@
 import React from 'react';
 import {ChoicePanel} from '.././choicePanel'
-import {useSelector, useDispatch} from 'react-redux'
-import {search} from './logic'
-
 
 export const SearchPanel = ({onSearchHandler, onClickHandleroptionOne, onClickHandleroptionTwo}) => {
-
-    const {isActive, movies} = useSelector(state => state)
-    const dispatch = useDispatch()      
-    
+   
     return (
        <div className="searchPanel">
            <div>                
