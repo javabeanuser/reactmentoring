@@ -7,14 +7,8 @@ import {
     applyFilterAction, 
     sortByRaitingAction, 
     sortByReleaseDateAction,
-    setSortTypeAction,
     setSearchByAction
 } from '../../actions/actions'
-
-import {
-	useHistory
-} from "react-router-dom";
-
 
 const MovieCatalog = ({movies, isGengre, applyFilterAction,sortByReleaseDateAction,sortByRaitingAction,setSearchByAction,setEmptyMoviesListAction}) => {
 
@@ -29,11 +23,9 @@ const MovieCatalog = ({movies, isGengre, applyFilterAction,sortByReleaseDateActi
     function onSearchHandler(){             
    
         const inputVal = document.getElementById('searchInputValue').value 
-        if (inputVal==''){
+        if (inputVal===''){
             window.location.reload();
         }
-    
-        console.log(isGengre)
         setEmptyMoviesListAction()
         if (isGengre) {
             search(inputVal,"genres")             

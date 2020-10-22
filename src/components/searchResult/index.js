@@ -1,15 +1,9 @@
 import React from 'react';
 import {MovieDetails} from '../movieDetails'
 import MovieSuggestions from '../../containers/movieSuggestions'
-import {useSelector} from 'react-redux'
 import {useEffect, useState} from 'react'
-import {
-	useHistory
-} from "react-router-dom";
 
 export const SearchResults = ({id}) => {
-
-   const history = useHistory()
    
    const [content, setContent] = useState({
        movie: {}, 
@@ -17,7 +11,6 @@ export const SearchResults = ({id}) => {
    })
 
    async function getMovie(){
-       console.log("werew")
     const movie = await fetch('https://reactjs-cdp.herokuapp.com/movies/'+id)
     .then(response => response.json())
     .then(data => data);   
@@ -30,15 +23,10 @@ export const SearchResults = ({id}) => {
     )
 
    }
-
+   
    useEffect (()=> {
       getMovie()
    },[])
-
-   function onClickMovieHandler(id){   
-    console.log(id)
-    history.push("/"+id)
-}
    
    return (
     <>        

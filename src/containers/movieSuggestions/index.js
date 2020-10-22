@@ -38,7 +38,6 @@ const MovieSuggestions = ({sortByRaiting, sortByReleaseDate, movie, isView, isAc
   
     
     function onClickMovieHandler(id){   
-        console.log(id)
         history.push("/"+id)
         document.location.reload()
     }
@@ -55,7 +54,7 @@ const MovieSuggestions = ({sortByRaiting, sortByReleaseDate, movie, isView, isAc
         }            
             <div className="catalogView">
                 {
-                    isActive == true ? movies.map(e=>
+                    isActive ? movies.map(e=>
                             <MoviePreview   
                                             key={e.id} movie={e}
                                             onClickHandler={onClickMovieHandler}/>
@@ -67,7 +66,6 @@ const MovieSuggestions = ({sortByRaiting, sortByReleaseDate, movie, isView, isAc
 }
 
 const mapStateToProps = state =>  {
-    console.log(state.isActive)
     return  {
         isActive: state.isActive, 
         movies:  state.movies,

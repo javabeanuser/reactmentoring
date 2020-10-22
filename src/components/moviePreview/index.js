@@ -8,7 +8,7 @@ onClickHandler}) => {
    return (
        <div className="moviePreview" onClick={() => onClickHandler(id)}>
            <div>
-             <img src={poster_path}/>
+             <img src={poster_path} alt={overview}/>
              <div>
                 <div className="movieInfo">
                     <label className="movieName">{title}</label>
